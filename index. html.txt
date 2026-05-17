@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffb199);
+      overflow:hidden;
+      padding:20px;
+    }
+
+    .container{
+      width:100%;
+      max-width:420px;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(10px);
+      border-radius:25px;
+      padding:35px 25px;
+      text-align:center;
+      color:white;
+      box-shadow:0 8px 25px rgba(0,0,0,0.2);
+      animation:fadeIn 1.5s ease;
+    }
+
+    h1{
+      font-size:2.4rem;
+      margin-bottom:15px;
+    }
+
+    .cake{
+      font-size:5rem;
+      animation:bounce 2s infinite;
+    }
+
+    p{
+      font-size:1rem;
+      line-height:1.7;
+      margin:18px 0;
+    }
+
+    .btn{
+      margin-top:15px;
+      padding:12px 28px;
+      border:none;
+      border-radius:30px;
+      background:white;
+      color:#ff4f81;
+      font-size:1rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.08);
+      background:#ffe4ec;
+    }
+
+    @keyframes bounce{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-10px);
+      }
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* Mobile Responsive */
+    @media(max-width:480px){
+      h1{
+        font-size:2rem;
+      }
+
+      .cake{
+        font-size:4rem;
+      }
+
+      p{
+        font-size:0.95rem;
+      }
+
+      .container{
+        padding:30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="cake">🎂</div>
+
+    <h1>Happy Birthday!</h1>
+
+    <p>
+      Wishing you endless happiness, love, laughter,
+      and success on your special day.  
+      May all your dreams come true and your smile
+      shine brighter every year ✨
+    </p>
+
+    <button class="btn" onclick="launchConfetti()">
+      Celebrate 🎉
+    </button>
+  </div>
+
+  <script>
+    // Auto confetti on page load
+    window.onload = () => {
+      launchConfetti();
+    };
+
+    // Confetti function
+    function launchConfetti() {
+      const duration = 3000;
+      const end = Date.now() + duration;
+
+      const colors = ['#ff4f81', '#ffffff', '#ffd700', '#ff85a2'];
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: colors
+        });
+
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: colors
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+  </script>
+
+</body>
+</html>
